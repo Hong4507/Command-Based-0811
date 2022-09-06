@@ -21,7 +21,7 @@ public class DriveForward extends CommandBase{
 
     @Override
     public void execute() {
-        drive.arcadeDrive(0.3, 0);
+        drive.arcadeDrive(0.7, 0);
     }
 
     @Override
@@ -34,9 +34,9 @@ public class DriveForward extends CommandBase{
 
     @Override
     public boolean isFinished() {
-        if(Timer.getFPGATimestamp() > initTime + 1){
+        if(Timer.getFPGATimestamp() > initTime + 0.5){
             return true;
         }
         return false;
     }
-}
+} 

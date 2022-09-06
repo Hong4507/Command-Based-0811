@@ -5,8 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.PS4Controller;
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.DriveForward;
 import frc.robot.commands.DriveRotation;
 import frc.robot.subsystems.DriveSubsystem;
@@ -25,10 +24,10 @@ public class RobotContainer {
   private final DriveSubsystem m_drive = new DriveSubsystem();
 
   // Joystick or standard controller
-  // private final Joystick m_driverJoystick = new Joystick(0);
+  private final Joystick controller = new Joystick(0);
 
   // PS4 Controller
-  private final PS4Controller controller = new PS4Controller(0);
+  // private final PS4Controller controller = new PS4Controller(0);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -36,8 +35,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_drive.setDefaultCommand(new RunCommand(
-      () -> {
-        m_drive.arcadeDrive(controller.getLeftY(), -controller.getRightX());}
+      () -> {m_drive.arcadeDrive(-controller.getRawAxis(1)*0.8, controller.getRawAxis(4)*0.8);}
       , m_drive));
     }
 

@@ -26,8 +26,8 @@ public class DriveSubsystem extends SubsystemBase{
   AHRS m_gyro = new AHRS(SPI.Port.kMXP);
     
   public DriveSubsystem() {
-      motorRL.setInverted(true);
-      motorFL.setInverted(true);
+      motorRR.setInverted(true);
+      motorFR.setInverted(true);
       m_gyro.reset();
   }
 

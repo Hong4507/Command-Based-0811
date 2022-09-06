@@ -4,14 +4,17 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class DriveRotation extends CommandBase {
 
   private DriveSubsystem drive;
-  private boolean direction; //true = left, false = right
+  private boolean direction; //true = right, false = left
   private double currentAngle;
+  private double init;
+  private double match;
 
   /** Creates a new DriveRotation. */
   public DriveRotation(DriveSubsystem drive, boolean direction) {
@@ -23,15 +26,18 @@ public class DriveRotation extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    init = Timer.getFPGATimestamp();
+    match = Timer.getMatchTime();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if (direction) {
-      drive.arcadeDrive(0, 0.3);
+      drive.arcadeDrive(0, 0.8);
     } else {
-      drive.arcadeDrive(0, -0.3);
+      drive.arcadeDrive(0, -0.8);
     }
     currentAngle = drive.getRotation().getDegrees();
   }
