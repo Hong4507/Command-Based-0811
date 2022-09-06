@@ -38,4 +38,8 @@ public class DriveSubsystem extends SubsystemBase{
   public Rotation2d getRotation() {
     return m_gyro.getRotation2d();
   }
+
+  public void resetGyro() {
+    m_gyro.reset();
+  }
 }
