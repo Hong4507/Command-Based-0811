@@ -5,7 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveForward;
@@ -25,10 +24,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem m_drive = new DriveSubsystem();
 
-  private final DriveForward driveForward = new DriveForward(m_drive);
-
   // Joystick or standard controller
-  private final Joystick m_driverJoystick = new Joystick(0);
+  // private final Joystick m_driverJoystick = new Joystick(0);
 
   // PS4 Controller
   private final PS4Controller controller = new PS4Controller(0);
@@ -39,9 +36,10 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_drive.setDefaultCommand(new RunCommand(
-      () -> {m_drive.arcadeDrive(controller.getRawAxis(1)*0.6, controller.getRawAxis(4)*0.6);}
+      () -> {
+        m_drive.arcadeDrive(controller.getLeftY(), -controller.getRightX());}
       , m_drive));
-  }
+    }
 
   /**
    * Use this method to define your button->command mappings. Buttons can be created by

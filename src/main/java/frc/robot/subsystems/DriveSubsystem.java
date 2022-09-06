@@ -18,15 +18,15 @@ public class DriveSubsystem extends SubsystemBase{
   WPI_TalonFX motorRR = new WPI_TalonFX(Constants.RRmotorID);
   WPI_TalonFX motorRL = new WPI_TalonFX(Constants.RLmotorID);
 
-  MotorControllerGroup m_rightGroup = new MotorControllerGroup(motorFR, motorFL);
-  MotorControllerGroup m_leftGroup = new MotorControllerGroup(motorRL, motorRR);
+  MotorControllerGroup m_rightGroup = new MotorControllerGroup(motorFR, motorRR);
+  MotorControllerGroup m_leftGroup = new MotorControllerGroup(motorFL, motorRL);
 
-  DifferentialDrive m_drive = new DifferentialDrive(m_rightGroup, m_leftGroup);
+  DifferentialDrive m_drive = new DifferentialDrive(m_leftGroup, m_rightGroup);
 
   AHRS m_gyro = new AHRS(SPI.Port.kMXP);
     
   public DriveSubsystem() {
-      motorFR.setInverted(true);
+      motorRL.setInverted(true);
       motorFL.setInverted(true);
       m_gyro.reset();
   }

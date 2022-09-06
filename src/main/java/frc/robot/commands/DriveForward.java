@@ -8,7 +8,6 @@ public class DriveForward extends CommandBase{
 
     private DriveSubsystem drive;
     private double initTime;
-    private double currentAngle;
 
     public DriveForward(DriveSubsystem drive){
         this.drive = drive;
